@@ -1,34 +1,26 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, FlatList, TouchableOpacity, StatusBar } from 'react-native';
+import React from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import { connect } from 'react-redux';
+
+import setHistory from '../store/actions/setHistory';
+import setStep from '../store/actions/setStep';
+import setNext from '../store/actions/setNext';
 
 import Board from './Board'
+import History from './History'
+import BottomBar from './BottomBar'
 
-export default function Game() {
-  const [history, setHistory] = useState([{grid: Array(9).fill(null)}]);
-  const [xIsNext, setNext] = useState(true);
-  const [step, setStep] = useState(0);
-
+function Game({history, setHistory, step, setStep, xIsNext, setNext}) {
   const lastMove = history[history.length-1];
   const current = history[step];
   const winner = calculateWinner(lastMove.grid);
-  const pastMoves = history.map((_stepGrid, stepNum) => {
-    return({
-      desc: stepNum ? 'Go to move #' + stepNum : 'Go to game start',
-      step: stepNum
-    });
-  });
 
   let status;
   if(winner) {
     status = 'The winner is ' + winner + '!'
   } else {
     status = 'Next Player: ' + (xIsNext ? 'X' : 'O');
-  }//end setStatus
-
-  const jumpTo = (stepNum) => {
-    setStep(stepNum)
-    setNext((stepNum%2) === 0)
-  }//end jumpTo
+  }// end setStatus
 
   const handlePress = (i) => {
     const historySlice = history.slice(0, step+1)
@@ -40,7 +32,7 @@ export default function Game() {
     setHistory(historySlice.concat({grid: gridSlice}));
     setNext(!xIsNext);
     setStep(historySlice.length);
-  }//end handlePress
+  }// end handlePress
 
   return (
     <View style={styles.game}>
@@ -53,18 +45,7 @@ export default function Game() {
           onPress = {(i) => handlePress(i)}
         />
       </View>
-      <View style={styles.history}>
-        <FlatList
-          keyExtractor={(item) => item.step.toString()}
-          data={pastMoves}
-          renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => jumpTo(item.step)}>
-              <Text style={styles.status}>{item.desc}</Text>
-            </TouchableOpacity>
-          )}
-        />
-        {console.log(pastMoves)}
-      </View>
+      <BottomBar/>
     </View> 
   );
 }// end Game
@@ -89,14 +70,28 @@ function calculateWinner(squares) {
   return null;
 }// end calculateWinner
 
+const mapStateToProps = state => ({
+  history: state.history,
+  step: state.step,
+  xIsNext: state.xIsNext,
+});
+
+const mapDispatchToProps = dispatch => ({
+  setHistory: (newHistory) => dispatch(setHistory(newHistory)),
+  setStep: (newStep) => dispatch(setStep(newStep)),
+  setNext: (newNext) => dispatch(setNext(newNext)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Game);
+
 const styles = StyleSheet.create({
   game: {
     backgroundColor: 'blue',
     flexDirection: 'column',
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: StatusBar.currentHeight,
+    alignItems: 'stretch',
+    alignSelf: 'stretch'
   },
   gameBoard: {
     backgroundColor: 'red',
@@ -106,11 +101,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'yellow',
     flex: 1,
     justifyContent: 'flex-end',
-  },
-  history: {
-    backgroundColor: 'green',
-    flex: 1,
-    justifyContent: 'flex-start',
   },
   status: {
     fontFamily : 'Roboto',

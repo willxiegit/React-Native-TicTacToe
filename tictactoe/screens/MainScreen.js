@@ -4,12 +4,13 @@ import { StyleSheet, View, Text } from "react-native";
 import Game from '../components/Game'
 
 export default function MainScreen() {
+
   return (
     <View style={styles.container}>
-        <Game/>
+      <Game/>
     </View>
   );
-}
+}// end MainScreen
 
 const styles = StyleSheet.create({
   container: {
