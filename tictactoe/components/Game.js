@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Text, Modal, Button } from 'react-native';
 import { connect } from 'react-redux';
 
 import setHistory from '../store/actions/setHistory';
@@ -11,6 +11,8 @@ import History from './History'
 import BottomBar from './BottomBar'
 
 function Game({history, setHistory, step, setStep, xIsNext, setNext}) {
+  const [openModal, setOpenModal] = useState(false)
+
   const lastMove = history[history.length-1];
   const current = history[step];
   const winner = calculateWinner(lastMove.grid);
@@ -36,6 +38,14 @@ function Game({history, setHistory, step, setStep, xIsNext, setNext}) {
 
   return (
     <View style={styles.game}>
+      <Modal visible={openModal} animationType='slide'>
+          <History/>
+          <Button
+            title='Close'
+            onPress={() => setOpenModal(false)}
+          />
+      </Modal>
+
       <View style={styles.gameInfo}>
         <Text style={styles.status}>{status}</Text>
       </View>
@@ -46,6 +56,12 @@ function Game({history, setHistory, step, setStep, xIsNext, setNext}) {
         />
       </View>
       <BottomBar/>
+      <View>
+        <Button
+          title='History'
+          onPress={() => setOpenModal(true)}
+        />
+      </View>
     </View> 
   );
 }// end Game
@@ -107,4 +123,7 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: 'bold',
   },
+  history: {
+    
+  }
 });

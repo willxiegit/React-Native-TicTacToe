@@ -7,18 +7,19 @@ import setNext from '../store/actions/setNext';
 
 function BottomBar({history, step, setStep, xIsNext, setNext}) {
   let back;
+  // hide back button when no previous steps
   if(step > 0) {
     back = false;
   }else {
     back = true;
-  }
+  }// end if
   let forward;
+  // hide forward button when no future steps
   if(step < history.length-1) {
     forward = false;
   }else {
     forward = true;
-  }
-  console.log(!back, !forward, step);
+  }// end if
 
   return(
     <View style={styles.bar}>
