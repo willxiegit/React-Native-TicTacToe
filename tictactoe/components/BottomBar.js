@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux';
+import { AntDesign } from '@expo/vector-icons';
 
 import setStep from '../store/actions/setStep';
 import setNext from '../store/actions/setNext';
@@ -25,12 +26,12 @@ function BottomBar({history, step, setStep, xIsNext, setNext}) {
     <View style={styles.bar}>
       <View>
         <TouchableOpacity style={[ styles.button, { opacity: back ? 0.2 : 1 }]} disabled={back} onPress={() => setStep(step-1)}>
-          <Text>BACK</Text>
+          <AntDesign name='leftcircle' size={40} color='purple'/>
         </TouchableOpacity>
       </View>
       <View>
         <TouchableOpacity style={[ styles.button, { opacity: forward ? 0.2 : 1 }]} disabled={forward} onPress={() => setStep(step+1)}>
-          <Text>FORWARD</Text>
+          <AntDesign name='rightcircle' size={40} color='purple'/>
         </TouchableOpacity>
       </View>
     </View>

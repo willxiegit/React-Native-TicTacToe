@@ -1,20 +1,18 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View, Text, Dimensions } from 'react-native';
-
-
-const DeviceWidth = Dimensions.get('window').width;
+import { TouchableOpacity, View, Text } from 'react-native';
+import { globalStyles } from '../constants/global';
 
 export default function Board({grid, onPress}) {
   const renderSquare = (i) => {
     return (
-      <TouchableOpacity style={styles.square} onPress={() => onPress(i)}>
-        <Text style={styles.grid}>{grid[i]}</Text>
+      <TouchableOpacity style={globalStyles.square} onPress={() => onPress(i)}>
+        <Text style={globalStyles.grid}>{grid[i]}</Text>
       </TouchableOpacity>
     )
   }// end renderSquare
 
   return (  
-    <View style={styles.boardRow}>
+    <View style={globalStyles.boardRow}>
       <View>
         {renderSquare(0)}
         {renderSquare(1)}
@@ -33,26 +31,3 @@ export default function Board({grid, onPress}) {
     </View>
   );
 }// end Board
-
-const styles = StyleSheet.create({
-  boardRow: {
-    flexDirection: 'row',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  square: {
-    width: DeviceWidth*0.2,
-    height: DeviceWidth*0.2,
-    backgroundColor: 'skyblue',
-    borderWidth: 4,
-    marginRight: -4,
-    marginTop: -4,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  grid: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-});
