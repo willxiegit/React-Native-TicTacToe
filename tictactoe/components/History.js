@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import setStep from '../store/actions/setStep';
 import setNext from '../store/actions/setNext';
 
-function History({history, setStep, setNext}) {
+function History({history, setStep, setNext, closeModal}) {
   const pastMoves = history.map((_stepGrid, stepNum) => {
     return({
       desc: stepNum ? 'Go to move #' + stepNum : 'Go to game start',
@@ -16,6 +16,7 @@ function History({history, setStep, setNext}) {
   const jumpTo = (stepNum) => {
     setStep(stepNum)
     setNext((stepNum%2) === 0)
+    closeModal();
   }// end jumpTo
 
   return (

@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Button } from "react-native";
 
 import Game from '../components/Game'
 
-export default function MainScreen() {
+export default function MainScreen({ navigation }) {
 
   return (
     <View style={styles.container}>

@@ -42,7 +42,7 @@ function Game({history, setHistory, step, setStep, xIsNext, setNext, newGame}) {
   return (
     <View style={globalStyles.game}>
       <Modal visible={openModal} animationType='slide'>
-          <History/>
+          <History closeModal = {() => setOpenModal(false)}/>
           <TouchableOpacity style={globalStyles.history} onPress={() => setOpenModal(false)}>
             <AntDesign name='closecircle' size={40} color='green'/>
           </TouchableOpacity>
