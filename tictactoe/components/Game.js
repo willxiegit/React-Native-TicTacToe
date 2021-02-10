@@ -8,10 +8,12 @@ import setStep from '../store/actions/setStep';
 import setNext from '../store/actions/setNext';
 import newGame from '../store/actions/newGame';
 
-import { globalStyles } from '../constants/global';
+import StyleSheetFactory from '../constants/themes'
 import Board from './Board'
 import History from './History'
 import BottomBar from './BottomBar'
+
+const globalStyles = StyleSheetFactory();
 
 function Game({history, setHistory, step, setStep, xIsNext, setNext, newGame}) {
   const [openModal, setOpenModal] = useState(false)
@@ -40,33 +42,34 @@ function Game({history, setHistory, step, setStep, xIsNext, setNext, newGame}) {
   }// end handlePress
 
   return (
-    <View style={globalStyles.game}>
+    <View style={globalStyles.container}>
       <Modal visible={openModal} animationType='slide'>
           <History closeModal = {() => setOpenModal(false)}/>
-          <TouchableOpacity style={globalStyles.history} onPress={() => setOpenModal(false)}>
-            <AntDesign name='closecircle' size={40} color='green'/>
+          <TouchableOpacity style={globalStyles.historyButton} onPress={() => setOpenModal(false)}>
+            <AntDesign name='closecircle' size={30} color='green'/>
+            <Text style={globalStyles.historyButtonText}>  Close</Text>
           </TouchableOpacity>
       </Modal>
 
       <View style={globalStyles.gameInfo}>
         <Text style={globalStyles.status}>{status}</Text>
-        <TouchableOpacity onPress={() => newGame()}>
-          <Ionicons name='refresh-circle' size={40} color='green'/>
+        <TouchableOpacity style={globalStyles.restart} onPress={() => newGame()}>
+          <Ionicons name='refresh-circle' size={45} color='green'/>
         </TouchableOpacity>
       </View>
-      <View style={globalStyles.gameBoard}>
-        <Board
-          grid = {current.grid}
-          onPress = {(i) => handlePress(i)}
-        />
+      <View style={globalStyles.game}>
+        <View style={globalStyles.gameBoard}>
+          <Board
+            grid = {current.grid}
+            onPress = {(i) => handlePress(i)}
+          />
+        </View>
       </View>
       <BottomBar/>
-      <View>
-        <TouchableOpacity style={globalStyles.history} onPress={() => setOpenModal(true)}>
-          <AntDesign name='clockcircle' size={40} color='green'/>
-          <Text>History</Text>
+        <TouchableOpacity style={globalStyles.historyButton} onPress={() => setOpenModal(true)}>
+          <AntDesign name='clockcircle' size={30} color='green'/>
+          <Text style={globalStyles.historyButtonText}>  History</Text>
         </TouchableOpacity>
-      </View>
     </View> 
   );
 }// end Game

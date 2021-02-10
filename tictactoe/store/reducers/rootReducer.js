@@ -1,7 +1,8 @@
-import setHistory from "../actions/setHistory";
-import setStep from "../actions/setStep";
-import setNext from "../actions/setNext";
-import newGame from "../actions/newGame";
+import setHistory from '../actions/setHistory';
+import setStep from '../actions/setStep';
+import setNext from '../actions/setNext';
+import newGame from '../actions/newGame';
+import setTheme from '../actions/setTheme';
 
 const rootReducer = (state, action) => {
   switch(action.type) {
@@ -25,6 +26,11 @@ const rootReducer = (state, action) => {
         history: [{grid: Array(9).fill(null)}],
         step: 0,
         xIsNext: true,
+      });
+      case(setTheme):
+      return({
+        ...state,
+        theme: action.payload,
       });
     default:
       return(state);

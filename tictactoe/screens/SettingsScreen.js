@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, Text } from "react-native";
+import { View, Text } from "react-native";
 
-import { globalStyles } from '../constants/global';
-import Game from '../components/Game'
+import StyleSheetFactory from '../constants/themes'
+
+const globalStyles = StyleSheetFactory();
 
 export default function MainScreen() {
 

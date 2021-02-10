@@ -1,10 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import { View, TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux';
 import { AntDesign } from '@expo/vector-icons';
 
+import StyleSheetFactory from '../constants/themes'
 import setStep from '../store/actions/setStep';
 import setNext from '../store/actions/setNext';
+
+const globalStyles = StyleSheetFactory();
 
 function BottomBar({history, step, setStep, xIsNext, setNext}) {
   let back;
@@ -23,14 +26,14 @@ function BottomBar({history, step, setStep, xIsNext, setNext}) {
   }// end if
 
   return(
-    <View style={styles.bar}>
+    <View style={globalStyles.bar}>
       <View>
-        <TouchableOpacity style={[ styles.button, { opacity: back ? 0.2 : 1 }]} disabled={back} onPress={() => setStep(step-1)}>
-          <AntDesign name='leftcircle' size={40} color='purple'/>
+        <TouchableOpacity style={[{opacity: back ? 0.2 : 1 }]} disabled={back} onPress={() => setStep(step-1)}>
+          <AntDesign name='leftcircle' size={40} color='purple' />
         </TouchableOpacity>
       </View>
       <View>
-        <TouchableOpacity style={[ styles.button, { opacity: forward ? 0.2 : 1 }]} disabled={forward} onPress={() => setStep(step+1)}>
+        <TouchableOpacity style={[{opacity: forward ? 0.2 : 1 }]} disabled={forward} onPress={() => setStep(step+1)}>
           <AntDesign name='rightcircle' size={40} color='purple'/>
         </TouchableOpacity>
       </View>
@@ -50,16 +53,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BottomBar);
-
-const styles = StyleSheet.create({
-  bar: {
-    backgroundColor: 'green',
-    flexDirection: 'row',
-    flex: 1,
-    justifyContent: 'space-around',
-    alignSelf: 'stretch',
-  },
-  button: {
-    backgroundColor: 'orange',
-  },
-});

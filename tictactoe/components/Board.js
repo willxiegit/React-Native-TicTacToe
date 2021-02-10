@@ -1,6 +1,8 @@
 import React from 'react';
 import { TouchableOpacity, View, Text } from 'react-native';
-import { globalStyles } from '../constants/global';
+import StyleSheetFactory from '../constants/themes'
+
+const globalStyles = StyleSheetFactory();
 
 export default function Board({grid, onPress}) {
   const renderSquare = (i) => {

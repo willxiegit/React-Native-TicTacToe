@@ -1,7 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList, TouchableOpacity} from 'react-native';
+import { View, Text, FlatList, TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux';
 
+import StyleSheetFactory from '../constants/themes'
+const globalStyles = StyleSheetFactory();
 import setStep from '../store/actions/setStep';
 import setNext from '../store/actions/setNext';
 
@@ -20,13 +22,13 @@ function History({history, setStep, setNext, closeModal}) {
   }// end jumpTo
 
   return (
-    <View style={styles.history}>
+    <View style={globalStyles.historyList}>
         <FlatList
           keyExtractor={(item) => item.step.toString()}
           data={pastMoves}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => jumpTo(item.step)}>
-              <Text style={styles.list}>{item.desc}</Text>
+            <TouchableOpacity style={globalStyles.listItem} onPress={() => jumpTo(item.step)}>
+              <Text>{item.desc}</Text>
             </TouchableOpacity>
           )}
         />
@@ -44,14 +46,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(History);
-
-const styles = StyleSheet.create({
-  history: {
-    backgroundColor: 'green',
-    flex: 1,
-    justifyContent: 'flex-start',
-  },
-  list :{
-    backgroundColor: 'purple',
-  }
-})
