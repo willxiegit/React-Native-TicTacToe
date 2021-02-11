@@ -1,15 +1,16 @@
 import React from 'react';
-import { View, Text } from "react-native";
+import { View, Text, Button } from "react-native";
 
-import StyleSheetFactory from '../constants/themes'
-
-const globalStyles = StyleSheetFactory();
+import { useTheme } from '../theme/themeContext'
+import StyleSheetFactory from '../theme/themes'
 
 export default function MainScreen() {
-
+  // set up stylesheet
+  const [theme, setTheme] = useTheme()
+  const styles = StyleSheetFactory(theme)
   return (
-    <View style={globalStyles.container}>
-      <Text>TODO</Text>
+    <View style={styles.container}>
+      <Button title='switch' onPress={() => setTheme('dark')}></Button>
     </View>
   );
 }

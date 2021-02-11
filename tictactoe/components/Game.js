@@ -1,30 +1,33 @@
 import React, { useState } from 'react';
 import { View, Text, Modal, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { Ionicons, AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 import setHistory from '../store/actions/setHistory';
 import setStep from '../store/actions/setStep';
 import setNext from '../store/actions/setNext';
 import newGame from '../store/actions/newGame';
 
-import StyleSheetFactory from '../constants/themes'
+import { useTheme } from '../theme/themeContext'
+import StyleSheetFactory from '../theme/themes'
 import Board from './Board'
 import History from './History'
 import BottomBar from './BottomBar'
 
-const globalStyles = StyleSheetFactory();
-
 function Game({history, setHistory, step, setStep, xIsNext, setNext, newGame}) {
+  // set up stylesheet
+  const [theme] = useTheme()
+  const styles = StyleSheetFactory(theme)
   const [openModal, setOpenModal] = useState(false)
 
-  const lastMove = history[history.length-1];
   const current = history[step];
-  const winner = calculateWinner(lastMove.grid);
+  const winner = calculateWinner(current.grid);
 
   let status;
   if(winner) {
     status = 'The winner is ' + winner + '!'
+  } else if(step === 9 && !winner) {
+    status = 'Stalemate!'
   } else {
     status = 'Next Player: ' + (xIsNext ? 'X' : 'O');
   }// end setStatus
@@ -42,33 +45,26 @@ function Game({history, setHistory, step, setStep, xIsNext, setNext, newGame}) {
   }// end handlePress
 
   return (
-    <View style={globalStyles.container}>
-      <Modal visible={openModal} animationType='slide'>
+    <View style={styles.container}>
+      <Modal visible={openModal} animationType='fade'>
           <History closeModal = {() => setOpenModal(false)}/>
-          <TouchableOpacity style={globalStyles.historyButton} onPress={() => setOpenModal(false)}>
-            <AntDesign name='closecircle' size={30} color='green'/>
-            <Text style={globalStyles.historyButtonText}>  Close</Text>
-          </TouchableOpacity>
       </Modal>
 
-      <View style={globalStyles.gameInfo}>
-        <Text style={globalStyles.status}>{status}</Text>
-        <TouchableOpacity style={globalStyles.restart} onPress={() => newGame()}>
-          <Ionicons name='refresh-circle' size={45} color='green'/>
+      <View style={styles.gameInfo}>
+        <Text style={styles.status}>{status}</Text>
+        <TouchableOpacity style={styles.restart} onPress={() => newGame()}>
+          <Ionicons name='refresh-circle' size={45} style={styles.setColor4}/>
         </TouchableOpacity>
       </View>
-      <View style={globalStyles.game}>
-        <View style={globalStyles.gameBoard}>
-          <Board
-            grid = {current.grid}
-            onPress = {(i) => handlePress(i)}
-          />
-        </View>
+      <View style={styles.game}>
+        <Board
+          grid = {current.grid}
+          onPress = {(i) => handlePress(i)}
+        />
       </View>
       <BottomBar/>
-        <TouchableOpacity style={globalStyles.historyButton} onPress={() => setOpenModal(true)}>
-          <AntDesign name='clockcircle' size={30} color='green'/>
-          <Text style={globalStyles.historyButtonText}>  History</Text>
+        <TouchableOpacity style={styles.historyButton} onPress={() => setOpenModal(true)}>
+          <Text style={styles.historyButtonText}>History</Text>
         </TouchableOpacity>
     </View> 
   );

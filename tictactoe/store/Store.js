@@ -6,7 +6,6 @@ const initialState = {
   history: [{grid: Array(9).fill(null)}],
   step: 0,
   xIsNext: true,
-  theme: 'dark',
 }
 
 const Store = () => {

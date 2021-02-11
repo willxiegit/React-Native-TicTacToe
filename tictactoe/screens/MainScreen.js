@@ -1,15 +1,17 @@
 import React from 'react';
 import { View, StatusBar } from "react-native";
 
-import StyleSheetFactory from '../constants/themes';
-import Header from '../components/GameHeader';
+import { useTheme } from '../theme/themeContext'
+import StyleSheetFactory from '../theme/themes'
+import Header from '../components/Headers/GameHeader';
 import Game from '../components/Game';
 
-const globalStyles = StyleSheetFactory();
-
 export default function MainScreen({ navigation }) {
+  // set up stylesheet
+  const [theme] = useTheme()
+  const styles = StyleSheetFactory(theme)
   return (
-    <View style={globalStyles.container}>
+    <View style={styles.container}>
       <StatusBar/>
       <Header navigation={navigation}/>
       <Game/>

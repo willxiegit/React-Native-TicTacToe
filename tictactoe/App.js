@@ -6,6 +6,7 @@ import * as Font from 'expo-font';
 import storeConfig from './store/Store'
 //components
 import Navigator from './navigation/screenStack'
+import { ThemeProvider } from './theme/themeContext'
 
 const Store = storeConfig();
 
@@ -21,7 +22,9 @@ export default function App() {
 
   return (
     <Provider store={Store}>
-      <Navigator/>
+      <ThemeProvider>
+        <Navigator/>
+      </ThemeProvider>
     </Provider>
   );
 }// end App

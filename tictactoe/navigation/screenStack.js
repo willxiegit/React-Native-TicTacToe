@@ -22,13 +22,7 @@ const Navigator = () => (
       <Stack.Screen
         name='Settings'
         component={SettingsScreen}
-        options={{
-          title:'Settings',
-          headerTitleStyle: {
-          fontFamily: 'Balsamiq-Bold',
-          fontSize: 30,
-          }
-        }}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   </NavigationContainer>
