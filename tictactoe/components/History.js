@@ -5,8 +5,10 @@ import { connect } from 'react-redux';
 import { useTheme } from '../theme/themeContext'
 import StyleSheetFactory from '../theme/themes'
 import HistoryHeader from './Headers/HistoryHeader'
-import setStep from '../store/actions/setStep';
-import setNext from '../store/actions/setNext';
+import setStep from '../store/actions/setStep'
+import setNext from '../store/actions/setNext'
+import miniBoard from './MiniBoard'
+import MiniBoard from './MiniBoard';
 
 function History({history, setStep, setNext, closeModal}) {
   // set up stylesheet
@@ -29,22 +31,26 @@ function History({history, setStep, setNext, closeModal}) {
   return (
     <View style={styles.container}>
       <HistoryHeader/>
-      <View style={styles.historyList}>
-          <FlatList
-            style={styles.test}
-            keyExtractor={(item) => item.step.toString()}
-            data={pastMoves}
-            renderItem={({ item }) => (
-              <TouchableOpacity style={styles.listItem} onPress={() => jumpTo(item.step)}>
-                <Text>{item.desc}</Text>
+      <View style={styles.historyBorder}>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          style={styles.historyList}
+          keyExtractor={(item) => item.step.toString()}
+          data={pastMoves}
+          renderItem={({ item }) => (
+            <View style={styles.historyItem}>
+              <MiniBoard grid={history[item.step]}/>
+              <TouchableOpacity style={styles.listButton} onPress={() => jumpTo(item.step)}>
+                <Text style={styles.listText}>{item.desc}</Text>
               </TouchableOpacity>
-            )}
-          />
-        </View>
-        <TouchableOpacity style={styles.historyButton} onPress={() => closeModal()}>
-          <Text style={styles.historyButtonText}>Close</Text>
-        </TouchableOpacity>
+            </View>
+          )}
+        />
       </View>
+      <TouchableOpacity style={styles.historyButton} onPress={() => closeModal()}>
+        <Text style={styles.historyButtonText}>Close</Text>
+      </TouchableOpacity>
+    </View>
   );
 }// end History
 

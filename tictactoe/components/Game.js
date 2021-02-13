@@ -14,7 +14,7 @@ import Board from './Board'
 import History from './History'
 import BottomBar from './BottomBar'
 
-function Game({history, setHistory, step, setStep, xIsNext, setNext, newGame}) {
+function Game({ history, setHistory, step, setStep, xIsNext, setNext, newGame }) {
   // set up stylesheet
   const [theme] = useTheme()
   const styles = StyleSheetFactory(theme)

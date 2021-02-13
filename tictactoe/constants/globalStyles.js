@@ -16,11 +16,22 @@ export default function globalStyles(theme) {
       alignItems: 'stretch',
       alignSelf: 'stretch',
     },
+    header: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingVertical: 20,
+    },
     headerTitle: {
       fontSize: 30,
       fontFamily: theme.font,
-      paddingLeft: 5,
+      color: theme.text,
       paddingBottom: 5,
+      textAlign: 'center',
+    },
+    headerSide: {
+      flex: 1,
+      paddingHorizontal: 10,
     },
     setbackground: {
       color: theme.background,
@@ -80,7 +91,7 @@ export default function globalStyles(theme) {
     historyButtonText: {
       fontFamily: theme.font,
       fontSize: 20,
-      color: theme.text,
+      color: theme.text2,
       paddingBottom: 5,
     },
     //
@@ -117,41 +128,79 @@ export default function globalStyles(theme) {
       paddingBottom: 13,
     },
     //
-    // HISTORY
+    // MINIBOARD
     //
-    historyHeader: {
+    miniBoard: {
+      backgroundColor: theme.grid1,
+      alignSelf: 'center',
+      height: DeviceWidth*0.3+4,
+      width: DeviceWidth*0.3+4,
+      borderRadius: 5,
+      marginVertical: 3,
+    },
+    miniRow: {
       flexDirection: 'row',
+      flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      paddingVertical: 20,
     },
-    historyList: {
+    miniSquare: {
+      width: DeviceWidth*0.1,
+      height: DeviceWidth*0.1,
+      backgroundColor: theme.grid2,
+      borderWidth: 2,
+      borderColor: theme.grid1,
+      borderRadius: 5,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    miniGrid: {
+      fontSize: 70,
+      fontFamily: theme.font,
+      color: theme.text,
+      paddingBottom: 13,
+    },
+    //
+    // HISTORY
+    //
+    historyBorder: {
       backgroundColor: theme.grid1,
       flex: 1,
       justifyContent: 'flex-start',
       alignSelf: 'center',
       width: DeviceWidth*0.9+8,
       borderRadius: 10,
-      borderWidth: 4,
+      borderWidth: 8,
       borderColor: theme.grid1,
     },
-    test: {
+    historyList: {
       backgroundColor: theme.grid2,
-      borderWidth: 4,
-      borderColor: theme.grid1,
-      borderRadius: 10,
+      borderRadius: 6,
     },
-    listItem: {
-      alignSelf: 'center',
+    historyItem: {
+      flex: 1,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-around',
+      paddingVertical: 10,
+    },
+    listButton: {
+      alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: theme.color2,
-      width: DeviceWidth*0.3,
-      height: DeviceWidth*0.2,
+      backgroundColor: theme.color4,
+      width: DeviceWidth*0.4,
+      height: 50,
+      borderRadius: 50,
+    },
+    listText: {
+      fontFamily: theme.font,
+      fontSize: 15,
+      color: theme.text,
     },
     //
-    // HEADER
+    // GAME HEADER
     //
-      header: {
+      gameHeader: {
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'flex-end',
@@ -186,6 +235,9 @@ export default function globalStyles(theme) {
       fontFamily: 'Balsamiq-Bold',
       fontSize: 30,
       marginBottom: 5,
+    },
+    allThemes: {
+      flex: 1,
     }
   });
 }

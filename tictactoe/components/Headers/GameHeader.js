@@ -6,13 +6,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../theme/themeContext'
 import StyleSheetFactory from '../../theme/themes'
 
-export default function header({ navigation }) {
+export default function GameHeader({ navigation }) {
   // set up stylesheet
   const [theme] = useTheme()
   const styles = StyleSheetFactory(theme)
 
   return (
-    <View style={styles.header}>
+    <View style={styles.gameHeader}>
       <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
         <Ionicons name="md-settings-sharp" size={40} style={styles.setColor4}/>
       </TouchableOpacity>
