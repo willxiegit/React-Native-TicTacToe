@@ -1,14 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-import { useTheme } from '../theme/themeContext'
-import StyleSheetFactory from '../theme/themes'
-
-export default function MiniBoard({ grid }) {
-  // set up stylesheet
-  const [theme] = useTheme()
-  const styles = StyleSheetFactory(theme)
-  
+export default function MiniBoard({ styles, grid }) {
   const renderSquare = (i) => {
     return (
       <View style={styles.miniSquare}>

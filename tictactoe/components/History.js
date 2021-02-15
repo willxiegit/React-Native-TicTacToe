@@ -7,8 +7,7 @@ import StyleSheetFactory from '../theme/themes'
 import HistoryHeader from './Headers/HistoryHeader'
 import setStep from '../store/actions/setStep'
 import setNext from '../store/actions/setNext'
-import miniBoard from './MiniBoard'
-import MiniBoard from './MiniBoard';
+import MiniBoard from './MiniBoard'
 
 function History({history, setStep, setNext, closeModal}) {
   // set up stylesheet
@@ -39,7 +38,7 @@ function History({history, setStep, setNext, closeModal}) {
           data={pastMoves}
           renderItem={({ item }) => (
             <View style={styles.historyItem}>
-              <MiniBoard grid={history[item.step]}/>
+              <MiniBoard styles={styles} grid={history[item.step].grid}/>
               <TouchableOpacity style={styles.listButton} onPress={() => jumpTo(item.step)}>
                 <Text style={styles.listText}>{item.desc}</Text>
               </TouchableOpacity>

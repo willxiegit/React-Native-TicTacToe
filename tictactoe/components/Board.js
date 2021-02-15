@@ -4,7 +4,7 @@ import { TouchableOpacity, View, Text } from 'react-native';
 import { useTheme } from '../theme/themeContext'
 import StyleSheetFactory from '../theme/themes'
 
-export default function Board({grid, onPress}) {
+export default function Board({ grid, onPress }) {
   // set up stylesheet
   const [theme] = useTheme()
   const styles = StyleSheetFactory(theme)

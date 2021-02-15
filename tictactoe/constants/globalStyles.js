@@ -155,10 +155,10 @@ export default function globalStyles(theme) {
       alignItems: 'center',
     },
     miniGrid: {
-      fontSize: 70,
+      fontSize: 30,
       fontFamily: theme.font,
       color: theme.text,
-      paddingBottom: 13,
+      paddingBottom: 5,
     },
     //
     // HISTORY
@@ -195,7 +195,8 @@ export default function globalStyles(theme) {
     listText: {
       fontFamily: theme.font,
       fontSize: 15,
-      color: theme.text,
+      color: theme.text2,
+      paddingBottom: 3,
     },
     //
     // GAME HEADER
@@ -238,6 +239,33 @@ export default function globalStyles(theme) {
     },
     allThemes: {
       flex: 1,
+      alignItems: 'center',
+    },
+    preview: {
+      backgroundColor: theme.grid1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginVertical: 20,
+      width: DeviceWidth*0.8,
+      height: DeviceWidth*0.4,
+      borderRadius: 10,
+    },
+    previewInner: {
+      backgroundColor: theme.grid2,
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: DeviceWidth*0.8-16,
+      height: DeviceWidth*0.4-16,
+      borderColor: theme.grid1,
+      borderRadius: 5,
+      flexDirection: 'row',
+    },
+    previewText: {
+      fontFamily: theme.font,
+      fontSize: 30,
+      color: theme.text,
+      textAlign: 'center',
+      width: '50%',
     }
   });
 }
