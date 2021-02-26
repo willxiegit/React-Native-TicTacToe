@@ -23,10 +23,10 @@ export default function globalStyles(theme) {
       paddingVertical: 20,
     },
     headerTitle: {
-      fontSize: 30,
-      fontFamily: theme.font,
+      fontSize: 30*theme.titleMulti,
+      fontFamily: theme.title,
       color: theme.text,
-      paddingBottom: 5,
+      paddingHorizontal: 10,
       textAlign: 'center',
     },
     headerSide: {
@@ -67,7 +67,7 @@ export default function globalStyles(theme) {
     },
     status: {
       fontFamily: theme.font,
-      fontSize: 32,
+      fontSize: 30*theme.textMulti,
       color: theme.text,
       flex: 3,
       paddingLeft: 15,
@@ -90,9 +90,8 @@ export default function globalStyles(theme) {
     },
     historyButtonText: {
       fontFamily: theme.font,
-      fontSize: 20,
+      fontSize: 20*theme.textMulti,
       color: theme.text2,
-      paddingBottom: 5,
     },
     //
     // BOARD
@@ -122,10 +121,9 @@ export default function globalStyles(theme) {
       alignItems: 'center',
     },
     grid: {
-      fontSize: 70,
+      fontSize: 70*theme.textMulti,
       fontFamily: theme.font,
       color: theme.text,
-      paddingBottom: 13,
     },
     //
     // MINIBOARD
@@ -155,10 +153,9 @@ export default function globalStyles(theme) {
       alignItems: 'center',
     },
     miniGrid: {
-      fontSize: 30,
+      fontSize: 30*theme.textMulti,
       fontFamily: theme.font,
       color: theme.text,
-      paddingBottom: 5,
     },
     //
     // HISTORY
@@ -194,9 +191,8 @@ export default function globalStyles(theme) {
     },
     listText: {
       fontFamily: theme.font,
-      fontSize: 15,
+      fontSize: 15*theme.textMulti,
       color: theme.text2,
-      paddingBottom: 3,
     },
     //
     // GAME HEADER
@@ -204,20 +200,16 @@ export default function globalStyles(theme) {
       gameHeader: {
         flexDirection: 'column',
         justifyContent: 'space-between',
-        alignItems: 'flex-end',
         padding: 10,
       },
       name: {
-        fontSize: 45,
-        fontFamily: theme.font,
+        fontSize: 40*theme.titleMulti,
+        fontFamily: theme.title,
         paddingLeft: 5,
-        paddingBottom: 5,
       },
-      title: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'flex-start',
+      settingsButton: {
+        alignSelf: 'flex-end',
+        marginBottom: 10,
       },
     //
     // BOTTOM BAR
@@ -234,7 +226,7 @@ export default function globalStyles(theme) {
     //
     settingsHeader: {
       fontFamily: 'Balsamiq-Bold',
-      fontSize: 30,
+      fontSize: 30*theme.titleMulti,
       marginBottom: 5,
     },
     allThemes: {
@@ -247,22 +239,22 @@ export default function globalStyles(theme) {
       alignItems: 'center',
       marginVertical: 20,
       width: DeviceWidth*0.8,
-      height: DeviceWidth*0.4,
+      height: DeviceWidth*0.42,
       borderRadius: 10,
     },
     previewInner: {
-      backgroundColor: theme.grid2,
+      backgroundColor: theme.background,
       justifyContent: 'center',
       alignItems: 'center',
       width: DeviceWidth*0.8-16,
-      height: DeviceWidth*0.4-16,
+      height: DeviceWidth*0.42-16,
       borderColor: theme.grid1,
       borderRadius: 5,
       flexDirection: 'row',
     },
     previewText: {
-      fontFamily: theme.font,
-      fontSize: 30,
+      fontFamily: theme.title,
+      fontSize: 30*theme.titleMulti,
       color: theme.text,
       textAlign: 'center',
       width: '50%',

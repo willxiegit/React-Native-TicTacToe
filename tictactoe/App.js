@@ -12,8 +12,12 @@ const Store = storeConfig();
 
 export default function App() {
   const [fontsLoaded] = Font.useFonts({
-    'Balsamiq-Bold': require('./assets/fonts/BalsamiqSans-Bold.ttf'),
-    'Balsamiq': require('./assets/fonts/BalsamiqSans-Regular.ttf')
+    'lightTitle': require('./assets/fonts/SuperSketch.ttf'),
+    'lightText': require('./assets/fonts/FriendlyFeltTips.ttf'),
+    'darkTitle': require('./assets/fonts/ScribbleBox.ttf'),
+    'darkText': require('./assets/fonts/Arowit.ttf'),
+    'retroTitle': require('./assets/fonts/LaserCorps.otf'),
+    'retroText': require('./assets/fonts/Neon80S.ttf'),
   });
 
   if (!fontsLoaded) {

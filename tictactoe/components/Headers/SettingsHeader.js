@@ -15,7 +15,7 @@ export default function SettingsHeader({ navigation }) {
       <TouchableOpacity style={styles.headerSide} onPress={() => navigation.goBack()}>
         <Ionicons name="md-arrow-back-circle" size={50} style={styles.setColor4} />
       </TouchableOpacity>
-      <Text style={styles.headerTitle}>Settings</Text>
+      <Text style={styles.headerTitle}> Settings </Text>
       <View style={styles.headerSide}></View>
     </View>
   )

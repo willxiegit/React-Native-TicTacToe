@@ -13,7 +13,7 @@ export default function HistoryHeader() {
   return (
     <View style={styles.header}>
       <AntDesign name="clockcircle" size={30} style={styles.setColor0} />
-      <Text style={styles.headerTitle}> History</Text>
+      <Text style={styles.headerTitle}>History </Text>
     </View>
   )
 }

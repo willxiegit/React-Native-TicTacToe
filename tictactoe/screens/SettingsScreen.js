@@ -13,7 +13,7 @@ function SettingsScreen({ navigation, history }) {
   const styles = StyleSheetFactory(theme)
   const lightTheme = StyleSheetFactory('light')
   const darkTheme = StyleSheetFactory('dark')
-  const retroTheme = StyleSheetFactory('dark')
+  const retroTheme = StyleSheetFactory('retro')
   
   return (
     <View style={styles.container}>
@@ -31,10 +31,10 @@ function SettingsScreen({ navigation, history }) {
             <Text style={darkTheme.previewText}>Dark</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.preview} onPress={() => setTheme('dark')}>
-          <View style={lightTheme.previewInner}>
-            <MiniBoard styles={lightTheme} grid={history[history.length-1].grid}/>
-            <Text style={lightTheme.previewText}>Light</Text>
+        <TouchableOpacity style={retroTheme.preview} onPress={() => setTheme('retro')}>
+          <View style={retroTheme.previewInner}>
+            <MiniBoard styles={retroTheme} grid={history[history.length-1].grid}/>
+            <Text style={retroTheme.previewText}>Retro</Text>
           </View>
         </TouchableOpacity>
       </View>
